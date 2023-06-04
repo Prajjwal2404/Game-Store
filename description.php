@@ -10,7 +10,7 @@ if (isset($_POST['card-no'])) {
         $cardName = $_POST["card-name"];
         $check = isset($_POST["card-save"]);
         if ($check) {
-            $sql = "INSERT INTO `card` (`Name`, `Number`) VALUES ('$cardName', '$cardNo')";
+            $sql = "INSERT INTO `$dbName`.`card` (`Name`, `Number`) VALUES ('$cardName', '$cardNo')";
             $result = mysqli_query($conn, $sql);
         }
         $noMatch = true;
@@ -27,7 +27,7 @@ if (isset($_POST['card-no'])) {
             $description = $row['Description'];
             $thumbnail = $row['Thumbnail'];
             $background = $row['Background'];
-            $sqlL = "INSERT INTO `sql12623496`.`library` (`Title`, `Genre`, `Availability`, `Price`, `Description`, `Thumbnail`, `Background`) VALUES ('$title', '$genre', '$availability', '$price', '$description', '$thumbnail', '$background')";
+            $sqlL = "INSERT INTO `$dbName`.`library` (`Title`, `Genre`, `Availability`, `Price`, `Description`, `Thumbnail`, `Background`) VALUES ('$title', '$genre', '$availability', '$price', '$description', '$thumbnail', '$background')";
             $resultL = mysqli_query($conn, $sqlL);
         }
         $url = 'library.php';
@@ -55,7 +55,7 @@ if (isset($_COOKIE['bought'])) {
             $description = $row['Description'];
             $thumbnail = $row['Thumbnail'];
             $background = $row['Background'];
-            $sqlL = "INSERT INTO `sql12623496`.`library` (`Title`, `Genre`, `Availability`, `Price`, `Description`, `Thumbnail`, `Background`) VALUES ('$title', '$genre', '$availability', '$price', '$description', '$thumbnail', '$background')";
+            $sqlL = "INSERT INTO `$dbName`.`library` (`Title`, `Genre`, `Availability`, `Price`, `Description`, `Thumbnail`, `Background`) VALUES ('$title', '$genre', '$availability', '$price', '$description', '$thumbnail', '$background')";
             $resultL = mysqli_query($conn, $sqlL);
         }
         $url = 'library.php';

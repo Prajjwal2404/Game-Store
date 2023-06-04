@@ -37,7 +37,7 @@ if (isset($_POST['user'])) {
     }
     ob_start();
     if ($agree && $noMatch) {
-        $sqlt = "INSERT INTO `login` (`Username`, `Email`, `Password`) VALUES ('$user', '$mail', '$pass')";
+        $sqlt = "INSERT INTO `$dbName`.`login` (`Username`, `Email`, `Password`) VALUES ('$user', '$mail', '$pass')";
         $results = mysqli_query($conn, $sqlt);
     } elseif (!$noMatch) {
         echo '<script type="text/javascript">alert("username already exists");</script>';
@@ -59,7 +59,7 @@ if (isset($_POST['username'])) {
     }
     ob_start();
     if ($Match && $newPass == $confirmPass) {
-        $sqlt = "UPDATE `sql12623496`.`login` SET `Password` = '$newPass' WHERE (`Username` = '$username')";
+        $sqlt = "UPDATE `$dbName`.`login` SET `Password` = '$newPass' WHERE (`Username` = '$username')";
         $results = mysqli_query($conn, $sqlt);
     } elseif (!$Match) {
         echo '<script type="text/javascript">alert("username does not exists");</script>';

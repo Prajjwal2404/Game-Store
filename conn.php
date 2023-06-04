@@ -1,9 +1,11 @@
 <?php
 
-$conn = mysqli_connect("sql12.freesqldatabase.com", "sql12623496", "Tv3eH5mW6Z", "sql12623496", "3306");
+$dbName = "sql12623496";
+$conn = mysqli_connect("sql12.freesqldatabase.com", "sql12623496", "Tv3eH5mW6Z", $dbName, "3306");
 if (!$conn) {
     die(mysqli_connect_error());
 }
+
 $adventureQ = "SELECT * FROM `adventure`";
 $adventure = mysqli_query($conn, $adventureQ);
 
