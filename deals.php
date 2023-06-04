@@ -264,11 +264,11 @@ function showContent($category, $alt)
 
                     <div class="navbackground">
                         <h2 class="dealoff">50% OFF</h2>
-                        <label for="radio1" onclick="shadow(1)" class="manualnav lbl1"></label>
-                        <label for="radio2" onclick="shadow(2)" class="manualnav lbl2"></label>
-                        <label for="radio3" onclick="shadow(3)" class="manualnav lbl3"></label>
-                        <label for="radio4" onclick="shadow(4)" class="manualnav lbl4"></label>
-                        <label for="radio5" onclick="shadow(5)" class="manualnav lbl5"></label>
+                        <label for="radio1" onclick="backImg(1)" class="manualnav lbl1"></label>
+                        <label for="radio2" onclick="backImg(2)" class="manualnav lbl2"></label>
+                        <label for="radio3" onclick="backImg(3)" class="manualnav lbl3"></label>
+                        <label for="radio4" onclick="backImg(4)" class="manualnav lbl4"></label>
+                        <label for="radio5" onclick="backImg(5)" class="manualnav lbl5"></label>
                     </div>
 
                 </div>
