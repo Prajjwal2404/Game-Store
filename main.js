@@ -93,6 +93,20 @@ function menuSwitch(el) {
     document.querySelector('.navigation').classList.toggle('open');
 }
 
+var hamMenu = window.matchMedia('(max-width: 1050px)');
+hamMenu.addEventListener('change', checkClicks);
+checkClicks(hamMenu);
+
+function checkClicks(menuMd) {
+    if (menuMd.matches) {
+        document.onclick = function (e) {
+            if (!document.querySelector('.navigation').contains(e.target) && !document.querySelector('.menu').contains(e.target) && !switcher) {
+                menuSwitch(menuBtn);
+            }
+        }
+    }
+}
+
 
 
 function search() {
@@ -130,7 +144,7 @@ function openSearchA() {
 }
 
 function focusChange() {
-    if (focus && !document.querySelector('.icon-search').matches('.icon-search:hover') && !document.querySelector('.close-search').matches('.close-search:hover')) {
+    if (focus && !document.querySelector('.searchbox').matches('.searchbox:hover')) {
         document.querySelector('.searchbox').classList.toggle('animate');
         let time = setTimeout(closeSearchA, 400);
         focus = false;
