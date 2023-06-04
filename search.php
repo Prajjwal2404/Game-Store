@@ -97,10 +97,12 @@ if (isset($_COOKIE['logged'])) {
             <span class="icon-game"><ion-icon name="game-controller"></ion-icon></span>
             <h2 class="logo-name">Game Store</h2>
         </div>
-        <div class="searchbox">
-            <input type="text" class="search" id="s-box" placeholder="Search">
+        <div class="searchbox change">
+            <span class="close-search" onclick="closeSearch()"><ion-icon name="chevron-forward"></ion-icon></span>
+            <input type="text" class="search" id="s-box" placeholder="Search" onfocusout="focusChange()">
             <span class="icon-search" onclick="search()"><ion-icon name="search"></ion-icon></span>
         </div>
+        <span class="search-mb" onclick="openSearch()"><ion-icon name="search"></ion-icon></span>
         <nav class="navigation">
             <a href="index.php">Home</a>
             <a href="library.php">Library</a>
@@ -239,7 +241,7 @@ if (isset($_COOKIE['logged'])) {
                 } elseif ($genreS == 'role-playing') {
                     $genreS = 'rpg';
                 }
-                echo "<div class='search'><img src = '" . $thumbnail . "' width = '180px' height = '240px' alt='" . $genreS . "' class = 'thumbnail' onclick='description(this, " . $couter . ")'><h4 class = 'title'>" . $title . "</h4></div>";
+                echo "<div class='search-th'><img src = '" . $thumbnail . "' width = '180px' height = '240px' alt='" . $genreS . "' class = 'thumbnail' onclick='description(this, " . $couter . ")'><h4 class = 'title'>" . $title . "</h4></div>";
             }
             ?>
         </div>

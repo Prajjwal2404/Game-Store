@@ -102,12 +102,53 @@ function search() {
         document.cookie = "search =" + el;
         location.href = "search.php";
     }
+    else {
+        document.querySelector('.search').focus();
+    }
 }
 
 intputSearch.onkeyup = function (e) {
     if (e.keyCode === 13) {
         search();
     }
+}
+
+
+
+var focus = false;
+function openSearch() {
+    document.querySelector('.searchbox').classList.toggle('change');
+    document.querySelector('.search-mb').classList.toggle('change');
+    document.querySelector('.logo').classList.toggle('change');
+    let time = setTimeout(openSearchA, 10);
+    document.querySelector('.search').focus();
+    focus = true;
+}
+
+function openSearchA() {
+    document.querySelector('.searchbox').classList.toggle('animate');
+}
+
+function focusChange() {
+    if (focus && !document.querySelector('.icon-search').matches('.icon-search:hover') && !document.querySelector('.close-search').matches('.close-search:hover')) {
+        document.querySelector('.searchbox').classList.toggle('animate');
+        let time = setTimeout(closeSearchA, 400);
+        focus = false;
+    }
+}
+
+function closeSearch() {
+    document.querySelector('.close-search').classList.add('tapped');
+    document.querySelector('.searchbox').classList.toggle('animate');
+    let time = setTimeout(closeSearchA, 400);
+    focus = false;
+}
+
+function closeSearchA() {
+    document.querySelector('.searchbox').classList.toggle('change');
+    document.querySelector('.search-mb').classList.toggle('change');
+    document.querySelector('.logo').classList.toggle('change');
+    document.querySelector('.close-search').classList.remove('tapped');
 }
 
 

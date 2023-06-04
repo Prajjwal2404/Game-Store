@@ -88,7 +88,7 @@ header.scrolled {
 
 .searchbox {
     position: relative;
-    max-width: 18%;
+    max-width: 20%;
     min-width: 11%;
     margin-left: auto;
 }
@@ -128,6 +128,25 @@ header.scrolled {
 
 .searchbox .icon-search:hover {
     color: var(--saffron);
+}
+
+.searchbox .close-search {
+    color: var(--darkwhite);
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+    -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+    font-size: 2em;
+    margin-right: 10px;
+    margin-left: 5px;
+    display: none;
+}
+
+.search-mb {
+    color: var(--darkwhite);
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+    -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+    font-size: 1.8em;
+    margin-left: auto;
+    display: none;
 }
 
 .navigation a {
@@ -775,8 +794,8 @@ header.scrolled {
     margin-left: 20px;
 }
 
-.library,
-.search {
+.library-th,
+.search-th {
     width: 180px;
     height: 350px;
     border-radius: 20px;
@@ -992,15 +1011,15 @@ header.scrolled {
         height: 290px;
     }
 
-    .library,
-    .search {
+    .library-th,
+    .search-th {
         width: 150px;
         height: 250px;
     }
 
     .img-th img,
-    .library img,
-    .search img {
+    .library-th img,
+    .search-th img {
         width: 150px;
         height: 200px;
     }
@@ -1045,13 +1064,20 @@ header.scrolled {
 
     .icon-game,
     .logo-name {
-        font-size: 1.7em;
         margin-left: 5px;
     }
 
     .menu {
         display: unset;
         margin-left: 15px;
+    }
+
+    .menu.tapped {
+        color: var(--saffron);
+    }
+
+    .menu:hover {
+        color: #e88c6b;
     }
 
     .account-icon {
@@ -1088,18 +1114,44 @@ header.scrolled {
     }
 
     .searchbox {
-        max-width: 34%;
+        max-width: 20%;
+        width: -webkit-fill-available;
+        display: flex;
+        align-items: center;
+        transition: 0.5s;
+    }
+
+    .searchbox.animate {
+        max-width: 100%;
     }
 
     .searchbox .search {
-        font-size: 0.8em;
+        font-size: 1em;
         padding: 6px 25px 6px 10px;
         font-weight: 400;
         height: auto;
     }
 
     .searchbox .icon-search {
-        font-size: 1em;
+        font-size: 1.2em;
+    }
+
+    .searchbox .close-search {
+        display: unset;
+    }
+
+    .searchbox .close-search.tapped {
+        color: var(--saffron);
+    }
+
+    .search-mb {
+        display: unset;
+    }
+
+    .searchbox.change,
+    .search-mb.change,
+    .logo.change {
+        display: none;
     }
 
     .outerest,
@@ -1123,14 +1175,6 @@ header.scrolled {
     .remember-forgot a,
     .login-register p a {
         transition: none !important;
-    }
-
-    .menu.tapped {
-        color: var(--saffron);
-    }
-
-    .menu:hover {
-        color: #e88c6b;
     }
 
     .login-register p a {
