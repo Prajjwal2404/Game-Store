@@ -1,7 +1,7 @@
 <?php
 
-$dbName = "sql12623496";
-$conn = mysqli_connect("sql12.freesqldatabase.com", "sql12623496", "Tv3eH5mW6Z", $dbName, "3306");
+$dbName = "gamestore";
+$conn = mysqli_connect("localhost", "root", "quantum", $dbName, "3306");
 if (!$conn) {
     die(mysqli_connect_error());
 }
