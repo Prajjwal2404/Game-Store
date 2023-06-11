@@ -17,12 +17,10 @@ if (isset($_POST['email'])) {
             $noMatch = false;
         }
     }
-    ob_start();
     if ($noMatch) {
-        echo '<script type="text/javascript">alert("incorrect email or password");</script>';
+        echo '<script type="text/javascript">alert("Incorrect email or password");</script>';
     }
-    header("Refresh:0");
-    ob_end_flush();
+    echo '<script>window.location.href ="library.php";</script>';
 }
 if (isset($_POST['user'])) {
     $user = $_POST["user"];
@@ -35,39 +33,42 @@ if (isset($_POST['user'])) {
             $noMatch = false;
         }
     }
-    ob_start();
     if ($agree && $noMatch) {
         $sqlt = "INSERT INTO `$dbName`.`login` (`Username`, `Email`, `Password`) VALUES ('$user', '$mail', '$pass')";
         $results = mysqli_query($conn, $sqlt);
+        echo '<script type="text/javascript">alert("User registered successfully!");</script>';
     } elseif (!$noMatch) {
-        echo '<script type="text/javascript">alert("username already exists");</script>';
+        echo '<script type="text/javascript">alert("Username already exists");</script>';
     } elseif (!$agree) {
-        echo '<script type="text/javascript">alert("please agree to terms & conditions");</script>';
+        echo '<script type="text/javascript">alert("Please agree to terms & conditions");</script>';
     }
-    header("Refresh:0");
-    ob_end_flush();
+    echo '<script>window.location.href ="library.php";</script>';
 }
 if (isset($_POST['username'])) {
     $username = $_POST["username"];
+    $otpPass = (int)$_POST["otp"];
     $newPass = $_POST["new-pass"];
     $confirmPass = $_POST["confirm-pass"];
-    $Match = false;
+    $Matched = false;
     while ($check = mysqli_fetch_assoc($login)) {
         if ($check["Username"] == $username) {
-            $Match = true;
+            $Matched = true;
         }
     }
-    ob_start();
-    if ($Match && $newPass == $confirmPass) {
+    session_start();
+    $otx = $_SESSION['otp'];
+    if ($Matched && $newPass == $confirmPass && $otpPass == $otx) {
         $sqlt = "UPDATE `$dbName`.`login` SET `Password` = '$newPass' WHERE (`Username` = '$username')";
         $results = mysqli_query($conn, $sqlt);
-    } elseif (!$Match) {
-        echo '<script type="text/javascript">alert("username does not exists");</script>';
+        echo '<script type="text/javascript">alert("Password changed successfully!");</script>';
+    } elseif (!$Matched) {
+        echo '<script type="text/javascript">alert("Username does not exists");</script>';
+    } elseif ($otpPass != $otx) {
+        echo '<script type="text/javascript">alert("Incorrect otp");</script>';
     } elseif ($newPass != $confirmPass) {
-        echo '<script type="text/javascript">alert("passwords do not match");</script>';
+        echo '<script type="text/javascript">alert("Passwords do not match");</script>';
     }
-    header("Refresh:0");
-    ob_end_flush();
+    echo '<script>window.location.href ="library.php";</script>';
 }
 ?>
 <?php
@@ -119,7 +120,7 @@ if (isset($_COOKIE['logged'])) {
             <span class="icon-close"><ion-icon name="close"></ion-icon></span>
             <div class="form-box login">
                 <h2>Login</h2>
-                <form action="index.php" method="post">
+                <form method="post">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail"></ion-icon></span>
                         <input type="email" required name="email">
@@ -142,7 +143,7 @@ if (isset($_COOKIE['logged'])) {
             </div>
             <div class="form-box register">
                 <h2>Registration</h2>
-                <form action="index.php" method="post">
+                <form method="post">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="person"></ion-icon></span>
                         <input type="text" required name="user">
@@ -168,12 +169,18 @@ if (isset($_COOKIE['logged'])) {
                 </form>
             </div>
             <div class="form-box forgot-pass">
-                <h2>Change Password</h2>
-                <form action="index.php" method="post">
+                <h2>Reset Password</h2>
+                <form method="post">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="person"></ion-icon></span>
-                        <input type="text" required name="username">
+                        <input type="text" class="pass-username" required name="username">
                         <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon otp-push resend" onclick="otp()"><ion-icon name="refresh-circle"></ion-icon></span>
+                        <span class="icon"><ion-icon name="shield"></ion-icon></span>
+                        <input type="password" required name="otp" maxlength="6">
+                        <label>One-Time Password</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
@@ -238,6 +245,7 @@ if (isset($_COOKIE['logged'])) {
         </div>
     </div>
     <script src="main.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

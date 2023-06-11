@@ -230,7 +230,7 @@ header.scrolled {
 
 .outerest {
     position: absolute;
-    top: 20%;
+    top: 16%;
     z-index: 98;
 }
 
@@ -261,7 +261,7 @@ header.scrolled {
 }
 
 .wrapper.active-pass {
-    height: 500px;
+    height: 560px;
 }
 
 .wrapper .form-box.login {
@@ -379,6 +379,24 @@ header.scrolled {
     color: var(--darkwhite);
     line-height: 57px;
     margin-top: 15px;
+}
+
+.input-box .otp-push {
+    border-radius: 50%;
+    font-size: 1.4em;
+    color: lightgreen;
+    cursor: pointer;
+    transform: translate(-170%, -5%);
+    transition: 0.2s;
+}
+
+.input-box .otp-push.sent {
+    color: red;
+    pointer-events: none;
+}
+
+.input-box .otp-push.resend:hover {
+    background-color: var(--saffron);
 }
 
 .remember-forgot {
@@ -1162,6 +1180,11 @@ header.scrolled {
     .wrapper,
     .wrapper-a {
         max-width: 95vw;
+    }
+
+    .input-box .otp-push {
+        font-size: 1.7em;
+        transform: translate(-160%, -17%);
     }
 
     .navigation a,

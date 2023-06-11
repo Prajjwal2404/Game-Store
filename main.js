@@ -33,12 +33,12 @@ btnPopup.addEventListener('click', () => {
     menuSwitch(menuBtn);
     window.scrollTo(0, 0);
     wrapper.style.display = "flex";
-    let time = setTimeout(scale, 100);
+    setTimeout(scale, 100);
 });
 
 iconClose.addEventListener('click', () => {
     wrapper.style.transform = "scale(0)";
-    let time = setTimeout(none, 500);
+    setTimeout(none, 500);
 });
 
 function scale() {
@@ -55,12 +55,12 @@ accountPopup.addEventListener('click', () => {
     menuSwitch(menuBtn);
     window.scrollTo(0, 0);
     wrapperA.style.display = "flex";
-    let time = setTimeout(scaleA, 100);
+    setTimeout(scaleA, 100);
 });
 
 iconCloseA.addEventListener('click', () => {
     wrapperA.style.transform = "scale(0)";
-    let time = setTimeout(noneA, 500);
+    setTimeout(noneA, 500);
 });
 
 function scaleA() {
@@ -75,6 +75,39 @@ function logout() {
     document.cookie = "logged=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "user=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     location.href = "index.php";
+}
+
+
+
+function otp() {
+    let username = document.querySelector('.pass-username').value;
+    if (username == '') {
+        alert("Please enter a username");
+    } else {
+        document.cookie = "passUser =" + username;
+        $.ajax({
+            url: 'otp.php',
+            success: function (resp) {
+                document.cookie = "passUser=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                if (resp == 0) {
+                    alert('OTP sent to your registered email\n\nResend OTP again in 30 seconds');
+                    document.querySelector('.otp-push').classList.add('sent');
+                    document.querySelector('.otp-push').classList.remove('resend');
+                    setTimeout(resend, 30000);
+                } else if (resp == 1) {
+                    alert('Unable to send OTP, please retry');
+                }
+                else if (resp == 2) {
+                    alert('Username does not exists');
+                }
+            }
+        });
+    }
+}
+
+function resend() {
+    document.querySelector('.otp-push').classList.remove('sent');
+    document.querySelector('.otp-push').classList.add('resend');
 }
 
 
@@ -134,7 +167,7 @@ function openSearch() {
     document.querySelector('.searchbox').classList.toggle('change');
     document.querySelector('.search-mb').classList.toggle('change');
     document.querySelector('.logo').classList.toggle('change');
-    let time = setTimeout(openSearchA, 10);
+    setTimeout(openSearchA, 10);
     document.querySelector('.search').focus();
     focus = true;
 }
@@ -146,7 +179,7 @@ function openSearchA() {
 function focusChange() {
     if (focus && !document.querySelector('.searchbox').matches('.searchbox:hover')) {
         document.querySelector('.searchbox').classList.toggle('animate');
-        let time = setTimeout(closeSearchA, 400);
+        setTimeout(closeSearchA, 400);
         focus = false;
     }
 }
@@ -154,7 +187,7 @@ function focusChange() {
 function closeSearch() {
     document.querySelector('.close-search').classList.add('tapped');
     document.querySelector('.searchbox').classList.toggle('animate');
-    let time = setTimeout(closeSearchA, 400);
+    setTimeout(closeSearchA, 400);
     focus = false;
 }
 

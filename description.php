@@ -34,7 +34,7 @@ if (isset($_POST['card-no'])) {
         header('Location: ' . $url);
         die();
     } else {
-        echo '<script type="text/javascript">alert("please enter valid card no.");</script>';
+        echo '<script type="text/javascript">alert("Please enter valid card no.");</script>';
     }
 }
 ?>
