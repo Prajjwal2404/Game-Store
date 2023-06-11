@@ -6,7 +6,7 @@ if (isset($_POST['email'])) {
     $remember = isset($_POST["remember"]);
     $noMatch = true;
     while ($check = mysqli_fetch_assoc($login)) {
-        if ($check["Email"] == $email && $check["Password"] == $password) {
+        if ($check["Email"] == $email && password_verify($password, $check["Password"])) {
             if ($remember) {
                 setcookie("logged", "1", time() + (86400 * 30), "/");
                 setcookie("user", $check["Username"], time() + (86400 * 30), "/");
@@ -25,7 +25,7 @@ if (isset($_POST['email'])) {
 if (isset($_POST['user'])) {
     $user = $_POST["user"];
     $mail = $_POST["mail"];
-    $pass = $_POST["pass"];
+    $pass = password_hash($_POST["pass"], PASSWORD_DEFAULT);
     $agree = isset($_POST["agree"]);
     $noMatch = true;
     while ($check = mysqli_fetch_assoc($login)) {
@@ -58,7 +58,8 @@ if (isset($_POST['username'])) {
     session_start();
     $otx = $_SESSION['otp'];
     if ($Matched && $newPass == $confirmPass && $otpPass == $otx) {
-        $sqlt = "UPDATE `$dbName`.`login` SET `Password` = '$newPass' WHERE (`Username` = '$username')";
+        $hashPass = password_hash($newPass, PASSWORD_DEFAULT);
+        $sqlt = "UPDATE `$dbName`.`login` SET `Password` = '$hashPass' WHERE (`Username` = '$username')";
         $results = mysqli_query($conn, $sqlt);
         echo '<script type="text/javascript">alert("Password changed successfully!");</script>';
     } elseif (!$Matched) {
