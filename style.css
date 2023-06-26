@@ -52,10 +52,19 @@ header {
     border-bottom-right-radius: 20px;
 }
 
-header.scrolled {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+header.scrolled::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .logo {
@@ -88,7 +97,7 @@ header.scrolled {
 
 .searchbox {
     position: relative;
-    max-width: 20%;
+    max-width: 240px;
     min-width: 11%;
     margin-left: auto;
 }
@@ -242,7 +251,7 @@ header.scrolled {
     position: relative;
     width: 400px;
     height: 440px;
-    background: transparent;
+    background-color: rgba(0, 0, 0, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     backdrop-filter: blur(30px);
@@ -470,7 +479,7 @@ header.scrolled {
     position: relative;
     width: 400px;
     height: 340px;
-    background: transparent;
+    background-color: rgba(0, 0, 0, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     backdrop-filter: blur(30px);
@@ -840,71 +849,15 @@ header.scrolled {
     color: var(--saffron);
 }
 
-@media screen and (max-width: 1425px) {
-    body {
-        font-size: 15.75px;
-    }
-}
-
 @media screen and (max-width: 1350px) {
     body {
         font-size: 15.5px;
     }
 }
 
-@media screen and (max-width: 1300px) {
-    body {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 1250px) {
-    body {
-        font-size: 14.5px;
-    }
-}
-
 @media screen and (max-width: 1200px) {
     body {
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 1150px) {
-    body {
-        font-size: 13.5px;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    body {
-        font-size: 13px;
-    }
-}
-
-@media screen and (max-width: 1050px) {
-    body {
-        font-size: 12.5px;
-    }
-
-    header.scrolled {
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    header.scrolled::before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        font-size: 15px;
     }
 
     .menu {
@@ -926,8 +879,8 @@ header.scrolled {
         right: -100%;
         width: 300px;
         height: 300px;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
@@ -945,6 +898,12 @@ header.scrolled {
 
     .navigation.open {
         right: 0;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    body {
+        font-size: 14.5px;
     }
 }
 
@@ -1056,22 +1015,7 @@ header.scrolled {
         border-bottom-right-radius: 10px;
     }
 
-    header.scrolled {
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
     header.scrolled::before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }

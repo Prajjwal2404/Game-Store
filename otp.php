@@ -18,7 +18,7 @@ if (isset($_COOKIE['passUser'])) {
         $_SESSION['otp'] = $otp;
         $subject = "One-Time Password for your Game Store account";
         $body = "Hi " . $userPass . "! Your One-Time Password for reseting your password is " . $otp;
-        $header = "From: Game Store <webgamestore000@gmail.com>";
+        $header = "From: Game Store <webgamestore000@outlook.com>";
         if (@mail($email, $subject, $body, $header)) {
             echo 0;
         } else {
