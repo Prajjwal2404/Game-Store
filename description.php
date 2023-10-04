@@ -121,7 +121,7 @@ if (isset($_COOKIE['bought'])) {
             <span class="icon-close"><ion-icon name="close"></ion-icon></span>
             <div class="form-box card-detail">
                 <h2>Card Details</h2>
-                <form action="description.php" method="post" id="formd">
+                <form action=<?php echo "description.php?class=" . $class . "&index=" . $index ?> method="post" id="formd">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="card"></ion-icon></span>
                         <input type="text" maxlength="16" required name="card-no">

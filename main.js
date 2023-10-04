@@ -126,7 +126,7 @@ function menuSwitch(el) {
     document.querySelector('.navigation').classList.toggle('open');
 }
 
-var hamMenu = window.matchMedia('(max-width: 1050px)');
+var hamMenu = window.matchMedia('(max-width: 1200px)');
 hamMenu.addEventListener('change', checkClicks);
 checkClicks(hamMenu);
 
@@ -202,11 +202,8 @@ function closeSearchA() {
 
 function description(e, n) {
     let el = e.alt;
-    JSON.stringify(el);
-    document.cookie = "class =" + el;
-    document.cookie = "index =" + n;
     document.cookie = "bought = 0";
-    location.href = "description.php";
+    location.href = `description.php?class=${el}&index=${n}`;
 }
 
 

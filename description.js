@@ -52,7 +52,7 @@ function clicker(e) {
 function home() {
     if (clicked) {
         document.cookie = "bought = 1";
-        location.href = "description.php";
+        window.location.reload();
     }
 }
 

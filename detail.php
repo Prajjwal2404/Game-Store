@@ -1,8 +1,8 @@
 <?php
 
 include 'conn.php';
-$class = $_COOKIE['class'];
-$index = $_COOKIE['index'];
+$class = $_GET['class'];
+$index = $_GET['index'];
 switch ($class) {
     case "adventure":
         $arr = mysqli_fetch_all($adventure, MYSQLI_ASSOC);

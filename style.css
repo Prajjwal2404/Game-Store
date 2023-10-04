@@ -417,9 +417,16 @@ header.scrolled::before {
     justify-content: space-between;
 }
 
+.remember-forgot label {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
 .remember-forgot label input {
     accent-color: var(--saffron);
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .remember-forgot a {
