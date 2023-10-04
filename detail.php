@@ -1,6 +1,10 @@
 <?php
 
 include 'conn.php';
+if (!isset($_GET['class']) || !isset($_GET['index'])) {
+    header('Location: index.php');
+    die();
+}
 $class = $_GET['class'];
 $index = $_GET['index'];
 switch ($class) {
@@ -58,5 +62,12 @@ switch ($class) {
     case "library":
         $arr = mysqli_fetch_all($library, MYSQLI_ASSOC);
         break;
+    default:
+        header('Location: index.php');
+        die();
 }
-$row = $arr[$index];
+if ($arr[$index]) {
+    $row = $arr[$index];
+} else {
+    header('Location: index.php');
+}
