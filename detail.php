@@ -66,7 +66,7 @@ switch ($class) {
         header('Location: index.php');
         die();
 }
-if ($arr[$index]) {
+if (isset($arr[$index])) {
     $row = $arr[$index];
 } else {
     header('Location: index.php');

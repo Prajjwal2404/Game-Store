@@ -1,7 +1,7 @@
 <?php
 
-$dbName = "gamestore";
-$conn = mysqli_connect("localhost", "root", "quantum", $dbName, "3306");
+$env = parse_ini_file('.env', false);
+$conn = mysqli_connect($env["HOSTNAME"], $env["USERNAME"], $env["PASSWORD"], $env["DATABASE"], $env["PORT"]);
 if (!$conn) {
     die(mysqli_connect_error());
 }
