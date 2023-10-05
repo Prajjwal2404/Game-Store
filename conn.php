@@ -6,6 +6,8 @@ if (!$conn) {
     die(mysqli_connect_error());
 }
 
+$dbName = $env["DATABASE"];
+
 $adventureQ = "SELECT * FROM `adventure`";
 $adventure = mysqli_query($conn, $adventureQ);
 
