@@ -1094,14 +1094,9 @@ LOCK TABLES `login` WRITE;
 ;
 INSERT INTO `login`
 VALUES (
-    'KillSwitch',
-    'prajjwalpratapshah@outlook.com',
-    'password'
-  ),
-  (
-    'Prajjwal',
-    'prajjwalpratapshah@gmail.com',
-    'passwords'
+    'Test',
+    'test@example.com',
+    ''
   );
 /*!40000 ALTER TABLE `login` ENABLE KEYS */
 ;
